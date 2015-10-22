@@ -1,6 +1,6 @@
 {
   "name": "zookeeper-commands",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A node.js client to run ZooKeeper Commands the four letter words.",
   "main": "lib/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/Quobject/zookeeper-commands.git"
   },
   "keywords": [
-    "ansible"
+    "zookeeper commands", "zookeeper"
   ],
   "author": "Matthias Ludwig <mludwig@quobject.io>",
   "license": "Apache-2.0",
