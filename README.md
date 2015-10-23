@@ -20,7 +20,6 @@ var ZookeeperCommands = require('zookeeper-commands');
 With promise
 
 ```js
-var zookeeperCommands = new ZookeeperCommands({host:'localhost', port:'2181'});
 
 var zookeeperCommands = new ZookeeperCommands({
   host: '127.0.0.1',
