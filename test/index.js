@@ -16,38 +16,114 @@
 
 /*global describe, it, before */
 var ZookeeperCommands = require('../lib/index.js');
+var Promise = require("bluebird");
 var path = require('path');
 var should = require('chai').should();
 var assert = require('chai').assert;
 var util = require('util');
-
-var config = require('../my_config.json');
+var debug = require('debug')('zookeeper-commands:test/index.js');
+var HOST = '52.64.63.10';
+var PORT = 2181;
+var TIMEOUT_MS = 15000;
 
 
 describe('ZookeeperCommands', function () {
 
   it('should merge opts', function () {
-    var ZookeeperCommands = new ZookeeperCommands({ a: 'a' });
-    assert.isNotNull(ZookeeperCommands);
-    assert.equal(ZookeeperCommands.a, 'a');
+    var zookeeperCommands = new ZookeeperCommands({ a: 'a' });
+    //debug('ZookeeperCommands', zookeeperCommands);
+
+    assert.isNotNull(zookeeperCommands);
+    assert.equal(zookeeperCommands.a, 'a');
   });
 
-  it('???', function (done) {
+  //it('should allow only four letters', function (done) {
+  //  this.timeout(1 * 60 * 1000);//1 minute
+
+  //  var promises = [];
+
+  //  [null, '', 'a', 'aaa', 'aaaaa'].forEach(function (item) {
+  //    debug('command = ', item);
+  //    var error;
+  //    var zookeeperCommands = new ZookeeperCommands({
+  //      host: HOST,
+  //      port: PORT
+  //    });
+  //    var promise = zookeeperCommands.command(item).then(function (data) {
+  //      console.log('data = ', util.inspect(data, { depth: 10 }));
+  //      assert.isNotNull(data);
+  //      done();
+  //    }).catch(function (error2) {
+  //      debug('error = ' + error2);
+  //      error = error2;
+  //    }).finally(function () {
+  //      assert.equal(error, 'Each command must be composed of four letters https://zookeeper.apache.org/doc/r3.4.6/zookeeperAdmin.html#sc_zkCommands');
+  //      debug('finally');
+  //    });
+
+  //    promises.push(promise);
+
+  //  });
+
+  //  Promise.all(promises).then(function () {
+  //    done();
+  //  });
+  //});
+
+
+  it('callback', function (done) {
     this.timeout(1 * 60 * 1000);//1 minute
 
-    var ZookeeperCommands = new ZookeeperCommands({
-      host: '',
-      port: '2181'
+    var zookeeperCommands = new ZookeeperCommands({
+      host: HOST,
+      port: PORT       
     });
 
-    assert.isNotNull(ZookeeperCommands);
-    ZookeeperCommands.command('ruok').then(function (data) {
-      console.log('data = ', util.inspect(data, { depth: 10 }));
-      assert.isNotNull(data);
+    zookeeperCommands.command('ruok2', function (err, data) {
+      console.log('err = ', err);
+      console.log('data = ', data);
       done();
     });
+
+
+
+
+
   });
 
+
+//  it('four letter words', function (done) {
+//    this.timeout(1 * 60 * 1000);//1 minute
+
+//    var testFunction = function (command, resultHandler) {
+//      var zookeeperCommands = new ZookeeperCommands({
+//        host: HOST,
+//        port: PORT,
+//        timeout_ms: TIMEOUT_MS
+//      });
+//      var promise = zookeeperCommands.command('ruok').then(function (data) {
+//        //debug('data = ', util.inspect(data, { depth: 10 }));
+//        console.log('data = ', data);
+//        assert.isNotNull(data);
+//        resultHandler(data);
+//      }).finally(function () {
+//        debug('finally');
+//        done();
+//      });
+//    };
+
+//    var testArray = [
+//      ['ruok', function (data) {
+//        assert.isTrue(data.ok);
+//      }],
+
+
+//    ].forEach(function (test) {
+//      testFunction(test[0], test[1]);
+//    });
+
+
+//  });
 
 
 });

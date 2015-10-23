@@ -22,11 +22,17 @@ With promise
 ```js
 var zookeeperCommands = new ZookeeperCommands({host:'localhost', port:'2181'});
 
+var zookeeperCommands = new ZookeeperCommands({
+  host: '127.0.0.1',
+  port: 2181,
+  timeout_ms: 1000
+});
+
 zookeeperCommands.command('ruok').then(function (data) {
   console.log('data = ', data); 
 });
 
-
+//data =  { command: 'ruok', raw: 'imok', ok: true }
 
 ```
 
@@ -37,8 +43,6 @@ With callback:
 zookeeperCommands.command( 'ruok', function (err, data) {
   console.log('data = ', data);
 });
-
-
 
 ```
 

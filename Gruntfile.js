@@ -1,4 +1,5 @@
-﻿
+﻿var debug = require('debug')('zookeeper-commands:Gruntfile.js');
+
 module.exports = function (grunt) {   
 
   grunt.initConfig({
@@ -21,7 +22,6 @@ module.exports = function (grunt) {
       ]
     },
     mochaTest: {
-      config: config,
       test: {
         options: {
           reporter: 'spec',
