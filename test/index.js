@@ -29,13 +29,13 @@ var TIMEOUT_MS = 15000;
 
 describe('ZookeeperCommands', function () {
 
-  it('should merge opts', function () {
-    var zookeeperCommands = new ZookeeperCommands({ a: 'a' });
-    //debug('ZookeeperCommands', zookeeperCommands);
+  //it('should merge opts', function () {
+  //  var zookeeperCommands = new ZookeeperCommands({ a: 'a' });
+  //  //debug('ZookeeperCommands', zookeeperCommands);
 
-    assert.isNotNull(zookeeperCommands);
-    assert.equal(zookeeperCommands.a, 'a');
-  });
+  //  assert.isNotNull(zookeeperCommands);
+  //  assert.equal(zookeeperCommands.a, 'a');
+  //});
 
   //it('should allow only four letters', function (done) {
   //  this.timeout(1 * 60 * 1000);//1 minute
@@ -71,59 +71,65 @@ describe('ZookeeperCommands', function () {
   //});
 
 
-  it('callback', function (done) {
+  //it('callback', function (done) {
+  //  this.timeout(1 * 60 * 1000);//1 minute
+
+  //  var zookeeperCommands = new ZookeeperCommands({
+  //    host: HOST,
+  //    port: PORT       
+  //  });
+
+  //  zookeeperCommands.command('ruok', function (err, data) {
+  //    console.log('err = ', err);
+  //    console.log('data = ', data);
+  //    done();
+  //  });
+  //});
+
+
+  it('four letter words', function (done) {
     this.timeout(1 * 60 * 1000);//1 minute
 
-    var zookeeperCommands = new ZookeeperCommands({
-      host: HOST,
-      port: PORT       
+    var testFunction = function (command, resultHandler) {
+      var zookeeperCommands = new ZookeeperCommands({
+        host: HOST,
+        port: PORT,
+        timeout_ms: TIMEOUT_MS
+      });
+      return zookeeperCommands.command(command).then(function (data) {
+        //debug('data = ', util.inspect(data, { depth: 10 }));
+        //console.log('data = ', util.inspect(data, { depth: 20 }));
+        assert.isNotNull(data);
+        resultHandler(data);
+      });
+    };
+
+    var promises = [];
+
+    var testArray = [
+      ['ruok', function (data) {
+        assert.isTrue(data.ok);
+      }],
+      ['stat', function (data) {
+        debug('stat data = ', data);
+        assert.isNotNull(data);
+        //(data.a).should.be.true;
+        assert.isObject(data.json);
+      }],
+
+
+    ].forEach(function (test) {
+      promises.push(testFunction(test[0], test[1]));
     });
 
-    zookeeperCommands.command('ruok2', function (err, data) {
-      console.log('err = ', err);
-      console.log('data = ', data);
+    Promise.all(promises).then(function () {
+
+    }).finally(function () {
+      debug('finally');
       done();
     });
 
-
-
-
-
   });
-
-
-//  it('four letter words', function (done) {
-//    this.timeout(1 * 60 * 1000);//1 minute
-
-//    var testFunction = function (command, resultHandler) {
-//      var zookeeperCommands = new ZookeeperCommands({
-//        host: HOST,
-//        port: PORT,
-//        timeout_ms: TIMEOUT_MS
-//      });
-//      var promise = zookeeperCommands.command('ruok').then(function (data) {
-//        //debug('data = ', util.inspect(data, { depth: 10 }));
-//        console.log('data = ', data);
-//        assert.isNotNull(data);
-//        resultHandler(data);
-//      }).finally(function () {
-//        debug('finally');
-//        done();
-//      });
-//    };
-
-//    var testArray = [
-//      ['ruok', function (data) {
-//        assert.isTrue(data.ok);
-//      }],
-
-
-//    ].forEach(function (test) {
-//      testFunction(test[0], test[1]);
-//    });
-
-
-//  });
 
 
 });
