@@ -22,8 +22,8 @@ var should = require('chai').should();
 var assert = require('chai').assert;
 var util = require('util');
 var debug = require('debug')('zookeeper-commands:test/index.js');
-var HOST = '52.64.63.10';
-var PORT = 2181;
+var HOST = '52.64.51.40';
+var PORT = 2183;
 var TIMEOUT_MS = 15000;
 
 
@@ -107,16 +107,80 @@ describe('ZookeeperCommands', function () {
     var promises = [];
 
     var testArray = [
-      ['ruok', function (data) {
-        assert.isTrue(data.ok);
-      }],
-      ['stat', function (data) {
-        debug('stat data = ', data);
+      //['ruok', function (data) {
+      //  assert.isTrue(data.ok);
+      //}],
+      //['stat', function (data) {
+      //  debug('stat data = ', data);
+      //  assert.isNotNull(data);
+      //  //(data.a).should.be.true;
+      //  assert.isObject(data.json);
+      //}],
+      //['conf', function (data) {
+      //  //debug('conf data = ', data);
+      //  console.log('data = ', data);
+      //  assert.isNotNull(data);
+      //  //assert.isObject(data.json);
+      //}],
+      //['cons', function (data) {
+      //  console.log('data = ', util.inspect(data, { depth: 20 }));
+      //  assert.isNotNull(data);
+      //  //assert.isObject(data.json);
+      //}],
+      //['crst', function (data) {
+      //  debug('crst data = ', data);
+      //  console.log('data = ', data);
+      //  assert.isNotNull(data);
+      //  //assert.isObject(data.json);
+      //}],
+      //['dump', function (data) {
+      //  debug('dump data = ', data);
+      //  console.log('data = ', data);
+      //  assert.isNotNull(data);
+      //  //assert.isObject(data.json);
+      //}],
+      //['envi', function (data) {
+      //  //debug('envi data = ', data);
+      //  console.log('data = ', data);
+      //  assert.isNotNull(data);
+      //  //assert.isObject(data.json);
+      //}],
+      //['srst', function (data) {
+      //  //debug('srst data = ', data);
+      //  console.log('data = ', data);
+      //  assert.isNotNull(data);
+      //  //assert.isObject(data.json);
+      //}],
+      //['srvr', function (data) {
+      //  debug('srvr data = ', data);
+      //  console.log('data = ', data);
+      //  assert.isNotNull(data);
+      //  //assert.isObject(data.json);
+      //}],
+      //['wchs', function (data) {
+      //  debug('wchs data = ', data);
+      //  console.log('data = ', data);
+      //  assert.isNotNull(data);
+      //  //assert.isObject(data.json);
+      //}],
+      //['wchc', function (data) {
+      //  debug('wchc data = ', data);
+      //  console.log('data = ', data);
+      //  assert.isNotNull(data);
+      //  //assert.isObject(data.json);
+      //}],
+      //['wchp', function (data) {
+      //  debug('wchp data = ', data);
+      //  console.log('data = ', data);
+      //  assert.isNotNull(data);
+      //  //assert.isObject(data.json);
+      //}],
+      ['mntr', function (data) {
+        debug('mntr data = ', data);
+        console.log('data = ', data);
         assert.isNotNull(data);
-        //(data.a).should.be.true;
-        assert.isObject(data.json);
+        //assert.isObject(data.json);
       }],
-
 
     ].forEach(function (test) {
       promises.push(testFunction(test[0], test[1]));
