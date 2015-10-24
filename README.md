@@ -273,7 +273,7 @@ zookeeperCommands.command('srst').then(function (data) {
   console.log('data = ', data); 
 });
 
-data =  { command: 'srst', raw: 'Server stats reset.\n' }
+//data =  { command: 'srst', raw: 'Server stats reset.\n' }
 
 ```
 srvr
