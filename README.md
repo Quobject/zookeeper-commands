@@ -402,3 +402,8 @@ zookeeperCommands.command('mntr').then(function (data) {
 //  zkPendingSyncs: '0' } }               
 
 ```
+
+
+## Usage Client 
+
+see [ClientREADME.md](ClientREADME.md)
