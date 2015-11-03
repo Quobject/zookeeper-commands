@@ -14,7 +14,7 @@ var zookeeperClient = new ZookeeperCommands().client;
 
 ## Usage
 
-Every function call returns a promise. The promises are using (node-zookeeper-client)[https://github.com/alexguan/node-zookeeper-client/] to connect to zookeeper server.
+Every function call returns a promise. The promises are using [node-zookeeper-client](https://github.com/alexguan/node-zookeeper-client) to connect to zookeeper server.
 
 mkdirp
 
