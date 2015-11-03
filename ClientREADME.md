@@ -8,6 +8,7 @@
 Then:
 
 ```js
+var ZookeeperCommands = require('zookeeper-commands');
 var zookeeperClient = new ZookeeperCommands().client;
 ```
 
