@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noLib": false,
+    "declaration": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "outDir":  "dist/"
+  },
+  "files": [
+    "src/client.ts",
+    "src/qsutil.ts",
+    "src/stat.ts",
+    "src/index.spec.ts",
+    "typings/index.d.ts"
+  ],
+  "compileOnSave": false
+}

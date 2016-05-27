@@ -1,27 +1,9 @@
-/**
-* Copyright 2015 Matthias Ludwig
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-**/
-'use strict';
-
-'use strict';
-var util = require('util');
-var Promise = require("bluebird");
+import * as _ from 'lodash';
+import * as Promise from 'bluebird';
+import * as util from 'util';
 var zookeeper = require('node-zookeeper-client');
 
-module.exports.create = function (zookeeper_connect_string, zk_node_path, zk_node_data, create_mode) {
-  var debug = require('debug')('zookeeper-commands:lib/client.js create');
+export function create (zookeeper_connect_string, zk_node_path, zk_node_data, create_mode) {
 
   if (!create_mode) {
     create_mode = zookeeper.CreateMode.PERSISTENT;
@@ -31,15 +13,15 @@ module.exports.create = function (zookeeper_connect_string, zk_node_path, zk_nod
     var client = zookeeper.createClient(zookeeper_connect_string);
 
     client.once('connected', function () {
-      //debug('Connected to the server.');
+      //console.log('Connected to the server.');
 
       client.create(zk_node_path, new Buffer(zk_node_data), create_mode, function (error) {
         client.close();
         if (error) {
-          //debug('Failed to create node: %s due to: %s.', zk_node_path, error);
+          //console.log('Failed to create node: %s due to: %s.', zk_node_path, error);
           reject(error);
         } else {
-          //debug('Node: %s is successfully created.', zk_node_path);
+          //console.log('Node: %s is successfully created.', zk_node_path);
           resolve(zk_node_path);
         }
       });
@@ -48,9 +30,7 @@ module.exports.create = function (zookeeper_connect_string, zk_node_path, zk_nod
   });
 };
 
-
-module.exports.mkdirp = function (zookeeper_connect_string, zk_node_path, zk_node_data, create_mode) {
-  var debug = require('debug')('zookeeper-commands:lib/client.js mkdirp');
+export function mkdirp (zookeeper_connect_string, zk_node_path, zk_node_data, create_mode) {
 
   if (!create_mode) {
     create_mode = zookeeper.CreateMode.PERSISTENT;
@@ -62,15 +42,15 @@ module.exports.mkdirp = function (zookeeper_connect_string, zk_node_path, zk_nod
     var client = zookeeper.createClient(zookeeper_connect_string);
 
     client.once('connected', function () {
-      //debug('Connected to the server.');
+      //console.log('Connected to the server.');
 
       client.mkdirp(zk_node_path, data, create_mode, function (error, path) {
         client.close();
         if (error) {
-          //debug('Failed to create node: %s due to: %s.', zk_node_path, error);
+          //console.log('Failed to create node: %s due to: %s.', zk_node_path, error);
           reject(error);
         } else {
-          //debug('Node: %s is successfully created.', path);
+          //console.log('Node: %s is successfully created.', path);
           resolve(zk_node_path);
         }
       });
@@ -81,26 +61,25 @@ module.exports.mkdirp = function (zookeeper_connect_string, zk_node_path, zk_nod
 
 
 
-module.exports.exists = function (zookeeper_connect_string, zk_node_path) {
-  var debug = require('debug')('zookeeper-commands:lib/client.js exists');
+export function exists (zookeeper_connect_string, zk_node_path) {
 
   return new Promise(function (resolve, reject) {
     var client = zookeeper.createClient(zookeeper_connect_string);
 
     client.once('connected', function () {
-      //debug('Connected to the server.');
+      //console.log('Connected to the server.');
 
       client.exists(zk_node_path, function (error, stat) {
         client.close();
         if (error) {
-          //debug('Failed exists node: %s due to: %s.', zk_node_path, error);
+          //console.log('Failed exists node: %s due to: %s.', zk_node_path, error);
           reject(error);
         } else {
           if (stat) {
-            //debug('Node exists.', zk_node_path);
+            //console.log('Node exists.', zk_node_path);
             resolve(true);
           } else {
-            //debug('Node does not exist.', zk_node_path);
+            //console.log('Node does not exist.', zk_node_path);
             resolve(false);
           }
         }
@@ -110,24 +89,23 @@ module.exports.exists = function (zookeeper_connect_string, zk_node_path) {
   });
 };
 
-module.exports.getData = function (zookeeper_connect_string, zk_node_path) {
-  var debug = require('debug')('zookeeper-commands:lib/client.js getData');
+export function getData (zookeeper_connect_string, zk_node_path) {
 
   return new Promise(function (resolve, reject) {
     var client = zookeeper.createClient(zookeeper_connect_string);
 
     client.once('connected', function () {
-      //debug('Connected to the server.');
+      //console.log('Connected to the server.');
 
       client.getData(zk_node_path, function (error, data, stat) {
         client.close();
         if (error) {
-          //debug('Failed getData node: %s due to: %s.', zk_node_path, error);
+          //console.log('Failed getData node: %s due to: %s.', zk_node_path, error);
           reject(error);
           return;
         }
         var result = data.toString('utf8');
-        //debug('Got data: ', result);
+        //console.log('Got data: ', result);
         resolve(result);
 
 
@@ -138,8 +116,7 @@ module.exports.getData = function (zookeeper_connect_string, zk_node_path) {
 };
 
 
-module.exports.setData = function (zookeeper_connect_string, zk_node_path, zk_node_data) {
-  var debug = require('debug')('zookeeper-commands:lib/client.js setData');
+export function setData (zookeeper_connect_string, zk_node_path, zk_node_data) {
 
   var data = zk_node_data ? new Buffer(zk_node_data) : null;
 
@@ -147,17 +124,17 @@ module.exports.setData = function (zookeeper_connect_string, zk_node_path, zk_no
     var client = zookeeper.createClient(zookeeper_connect_string);
 
     client.once('connected', function () {
-      //debug('Connected to the server.');
+      //console.log('Connected to the server.');
 
       client.setData(zk_node_path, data, function (error, stat) {
         client.close();
         if (error) {
-          //debug('Failed setData node: %s due to: %s.', zk_node_path, error);
+          //console.log('Failed setData node: %s due to: %s.', zk_node_path, error);
           reject(error);
           return;
         }
         var result = data.toString('utf8');
-        //debug('Data is set');
+        //console.log('Data is set');
         resolve(true);
       });
     });
@@ -166,24 +143,22 @@ module.exports.setData = function (zookeeper_connect_string, zk_node_path, zk_no
 };
 
 
-module.exports.remove = function (zookeeper_connect_string, zk_node_path) {
-  var debug = require('debug')('zookeeper-commands:lib/client.js remove');
-
+export function remove (zookeeper_connect_string, zk_node_path) {
 
   return new Promise(function (resolve, reject) {
     var client = zookeeper.createClient(zookeeper_connect_string);
 
     client.once('connected', function () {
-      //debug('Connected to the server.');
+      //console.log('Connected to the server.');
 
       client.remove(zk_node_path, function (error) {
         client.close();
         if (error) {
-          //debug('Failed remove node: %s due to: %s.', zk_node_path, error);
+          //console.log('Failed remove node: %s due to: %s.', zk_node_path, error);
           reject(error);
           return;
         }
-        //debug('Node is deleted');
+        //console.log('Node is deleted');
         resolve(true);
       });
     });
