@@ -36,7 +36,7 @@ zookeeperCommands.remove(zookeeper_connect_string, zk_node_path);
 * Typescript
 
 ```js
-import { mkdirp, setData } from './index';
+import { mkdirp, setData } from 'zookeeper-commands';
 
 mkdirp('localhost:2181', '/test').then(function () {
   return setData('localhost:2181', '/test', 'initiated');

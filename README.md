@@ -51,7 +51,7 @@ zookeeper.command( 'ruok', function (err, data) {
 Typescript:
 
 ```js
-import { Zookeeper, Options } from './index';
+import { Zookeeper, Options } from 'zookeeper-commands';
 
 const options = new Options(
     /* host */ 'localhost',
