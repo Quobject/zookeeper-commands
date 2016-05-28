@@ -1,12 +1,11 @@
 import * as _ from 'lodash';
-import * as Promise from 'bluebird';
 
 export function array2json(lines, object) {
   console.log('lines', lines);
   console.log('object', object);
 
   _.reduce(lines, function (result, item: string) {
-    var parts;
+    let parts;
 
     item = item.trim();
 
@@ -23,7 +22,7 @@ export function array2json2(lines, object) {
   console.log('object', object);
 
   _.reduce(lines, function (result, item: string) {
-    var parts;
+    let parts;
 
     item = item.trim();
 
@@ -44,7 +43,7 @@ export function array2json3(lines, object) {
   console.log('object', object);
 
   _.reduce(lines, function (result, item: string) {
-    var parts;
+    let parts;
 
     item = item.trim();
 
@@ -59,4 +58,3 @@ export function array2json3(lines, object) {
     return result;
   }, object);
 };
-                                                                                    

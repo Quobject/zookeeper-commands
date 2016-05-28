@@ -12,7 +12,9 @@ A node.js client to run [ZooKeeper Commands](https://zookeeper.apache.org/doc/r3
 Then:
 
 ```js
-var ZookeeperCommands = require('zookeeper-commands');
+var zookeeperCommands = require('zookeeper-commands');
+var Options = zookeeperCommands.Options;
+var Zookeeper = zookeeperCommands.Zookeeper;
 ```
 
 ## Usage
@@ -20,14 +22,15 @@ var ZookeeperCommands = require('zookeeper-commands');
 With promise
 
 ```js
+var options = new Options(
+    /* host */ 'localhost',
+    /* port */ 2181
+    /* timeout_ms */ 1000
+   );    
+ 
+var zookeeper = new Zookeeper(options);
 
-var zookeeperCommands = new ZookeeperCommands({
-  host: '127.0.0.1',
-  port: 2181,
-  timeout_ms: 1000
-});
-
-zookeeperCommands.command('ruok').then(function (data) {
+zookeeper.command('ruok').then(function (data) {
   console.log('data = ', data); 
 });
 
@@ -39,17 +42,35 @@ With callback:
 
 ```js
 
-zookeeperCommands.command( 'ruok', function (err, data) {
+zookeeper.command( 'ruok', function (err, data) {
   console.log('data = ', data);
 });
 
+```
+
+Typescript:
+
+```js
+import { Zookeeper, Options } from './index';
+
+const options = new Options(
+    /* host */ 'localhost',
+    /* port */ 2181,
+    /* timeout_ms */ 1000
+);
+
+const zookeeper = new Zookeeper(options);
+
+zookeeper.command('ruok').then(function (data) {
+  console.log('data = ', data);
+});
 ```
 
 stat
 
 ```js
 
-zookeeperCommands.command('stat').then(function (data) {
+zookeeper.command('stat').then(function (data) {
   console.log('data = ', data); 
 });
 
@@ -101,7 +122,7 @@ conf
 
 ```js
 
-zookeeperCommands.command('conf').then(function (data) {
+zookeeper.command('conf').then(function (data) {
   console.log('data = ', data); 
 });
 
@@ -149,7 +170,7 @@ cons
 
 ```js
 
-zookeeperCommands.command('cons').then(function (data) {
+zookeeper.command('cons').then(function (data) {
   console.log('data = ', data); 
 });
 
@@ -176,7 +197,7 @@ crst
 
 ```js
 
-zookeeperCommands.command('crst').then(function (data) {
+zookeeper.command('crst').then(function (data) {
   console.log('data = ', data); 
 });
 
@@ -187,7 +208,7 @@ dump
 
 ```js
 
-zookeeperCommands.command('dump').then(function (data) {
+zookeeper.command('dump').then(function (data) {
   console.log('data = ', data); 
 });
 
@@ -218,7 +239,7 @@ envi
 
 ```js
 
-zookeeperCommands.command('envi').then(function (data) {
+zookeeper.command('envi').then(function (data) {
   console.log('data = ', data); 
 });
 
@@ -269,7 +290,7 @@ srst
 
 ```js
 
-zookeeperCommands.command('srst').then(function (data) {
+zookeeper.command('srst').then(function (data) {
   console.log('data = ', data); 
 });
 
@@ -280,7 +301,7 @@ srvr
 
 ```js
 
-zookeeperCommands.command('srvr').then(function (data) {
+zookeeper.command('srvr').then(function (data) {
   console.log('data = ', data); 
 });
 
@@ -317,7 +338,7 @@ wchs
 
 ```js
 
-zookeeperCommands.command('wchs').then(function (data) {
+zookeeper.command('wchs').then(function (data) {
   console.log('data = ', data); 
 });
 
@@ -333,7 +354,7 @@ wchc
 
 ```js
 
-zookeeperCommands.command('wchc').then(function (data) {
+zookeeper.command('wchc').then(function (data) {
   console.log('data = ', data); 
 });
 
@@ -344,7 +365,7 @@ wchp
 
 ```js
 
-zookeeperCommands.command('wchp').then(function (data) {
+zookeeper.command('wchp').then(function (data) {
   console.log('data = ', data); 
 });
 
@@ -355,7 +376,7 @@ mntr
 
 ```js
 
-zookeeperCommands.command('mntr').then(function (data) {
+zookeeper.command('mntr').then(function (data) {
   console.log('data = ', data); 
 });
 

@@ -1,5 +1,3 @@
-import * as _ from 'lodash';
-import * as Promise from 'bluebird';
 
 export default function (lines, object) {
   console.log('lines', lines);
@@ -28,7 +26,7 @@ export default function (lines, object) {
             port: mp[2],
             queued: mp[3],
             received: mp[4],
-            sent: mp[5]
+            sent: mp[5],
           });
         },
       },

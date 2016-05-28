@@ -1,24 +1,20 @@
-﻿import * as _ from 'lodash';
-import * as Promise from 'bluebird';
-//import * as child_process from 'child_process';
+﻿import * as Promise from 'bluebird';
 import * as os from 'os';
 import stat from './stat';
 import * as qsutil from './qsutil';
-//const exec = child_process.exec;
-var Netcat = require('node-netcat');
+const Netcat = require('node-netcat');
 
 export * from './client'
 
+const extractResult = function (result) {
 
-var extractResult = function (result) {
-
-  var extracterArray = [
+  const extracterArray = [
     {
       re: /ruok/,
       run: function (resultp) {
         resultp.ok = resultp.raw === 'imok';
         return resultp;
-      }
+      },
     },
     //----------------------------------
     {
@@ -28,7 +24,7 @@ var extractResult = function (result) {
         resultp.json = {};
         stat(resultp.lines, resultp.json);
         return resultp;
-      }
+      },
     },
     //----------------------------------
     {
@@ -39,7 +35,7 @@ var extractResult = function (result) {
         qsutil.array2json(resultp.lines, resultp.json);
         //conf(resultp.lines, resultp.json);
         return resultp;
-      }
+      },
     },
     //----------------------------------
     {
@@ -139,21 +135,21 @@ var extractResult = function (result) {
         qsutil.array2json3(resultp.lines, resultp.json);
         return resultp;
       },
-    }
+    },
 
 
   ];
 
   extracterArray.forEach(function (extracter) {
-    var re = extracter.re;
-    var str = result.command;
-    var m;
+    const re = extracter.re;
+    const str = result.command;
+    let m;
 
     if ((m = re.exec(str)) !== null) {
       if (m.index === re.lastIndex) {
         re.lastIndex++;
       }
-      // View your result using the m-variable.
+      // View your result using the m-constiable.
       // eg m[0] etc.
       return extracter.run(result);
     }
@@ -183,15 +179,15 @@ export class Zookeeper {
       //console.log('port =', self.port);
       //console.log('timeout_ms =', self.timeout_ms);
 
-      var options = {
+      const options = {
+        read_encoding: 'utf8',
         timeout: zookeeper.options.timeout_ms ? zookeeper.options.timeout_ms : 60000,
-        read_encoding: 'utf8'
       };
 
       return new Promise(function (resolve, reject) {
 
         //console.log('options =', options);
-        var client = Netcat.client(zookeeper.options.port, zookeeper.options.host, options);
+        const client = Netcat.client(zookeeper.options.port, zookeeper.options.host, options);
 
         client.on('open', function () {
           //console.log('on open');
@@ -199,7 +195,7 @@ export class Zookeeper {
         });
 
         client.on('data', function (data) {
-          var response = data.toString('utf8');
+          const response = data.toString('utf8');
           //console.log('response ', response);
           resolve(response);
         });
@@ -215,14 +211,11 @@ export class Zookeeper {
 
         client.start();
       });
-
-
-
     }).then(function (data) {
 
-      var result = {
+      const result = {
         command: command,
-        raw: data
+        raw: data,
       };
       //return result;
       return extractResult(result);
@@ -231,12 +224,8 @@ export class Zookeeper {
       //console.log('finally');
       //connection.end();
     }).nodeify(callback);
-
-
-
   }
 }
-
 
 export interface IOptions {
   host: string;
