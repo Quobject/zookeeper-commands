@@ -24,7 +24,7 @@ With promise
 ```js
 var options = new Options(
     /* host */ 'localhost',
-    /* port */ 2181
+    /* port */ 2181,
     /* timeout_ms */ 1000
    );    
  
