@@ -1,6 +1,5 @@
 /* tslint:disable:no-shadowed-variable */
 /* tslint:disable:no-unused-variable */
-import * as Promise from 'bluebird';
 import test = require('blue-tape');
 import * as path from 'path';
 import * as util from 'util';

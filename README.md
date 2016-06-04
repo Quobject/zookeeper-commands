@@ -4,6 +4,9 @@ A node.js client to run [ZooKeeper Commands](https://zookeeper.apache.org/doc/r3
 [![NPM](https://nodei.co/npm/zookeeper-commands.png?downloads=true&downloadRank=true)](https://nodei.co/npm/zookeeper-commands/)
 [![NPM](https://nodei.co/npm-dl/zookeeper-commands.png?months=6&height=3)](https://nodei.co/npm/zookeeper-commands/)
 
+[![NPM version][npm-image]][npm-url]
+[![NPM downloads][downloads-image]][downloads-url]
+
 ## Installation
 
    
@@ -428,3 +431,12 @@ zookeeper.command('mntr').then(function (data) {
 ## Usage Client 
 
 see [ClientREADME.md](ClientREADME.md)
+
+## License
+
+MIT
+
+[npm-image]: https://img.shields.io/npm/v/zookeeper-commands.svg?style=flat
+[npm-url]: https://npmjs.org/package/zookeeper-commands
+[downloads-image]: https://img.shields.io/npm/dm/zookeeper-commands.svg?style=flat
+[downloads-url]: https://npmjs.org/package/zookeeper-commands

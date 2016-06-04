@@ -1,7 +1,7 @@
-﻿import * as Promise from 'bluebird';
-import * as os from 'os';
+﻿import * as os from 'os';
 import stat from './stat';
 import * as qsutil from './qsutil';
+import nodeify from 'nodeify-ts';
 const Netcat = require('node-netcat');
 
 export * from './client'
@@ -167,7 +167,7 @@ export class Zookeeper {
   public command(command: string, callback?: (err, data) => void) {
     let zookeeper = this;
 
-    return Promise.resolve().then(function () {
+    const promise = Promise.resolve().then(function () {
       //console.log('command = ', command);
       if (!command || command.length !== 4) {
         throw new Error(`Each command must be 
@@ -219,11 +219,9 @@ export class Zookeeper {
       };
       //return result;
       return extractResult(result);
+    });
 
-    }).finally(function () {
-      //console.log('finally');
-      //connection.end();
-    }).nodeify(callback);
+    return nodeify(promise, callback);
   }
 }
 

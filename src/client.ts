@@ -1,4 +1,3 @@
-import * as Promise from 'bluebird';
 const zookeeper = require('node-zookeeper-client');
 
 export function create (zookeeper_connect_string, zk_node_path, zk_node_data, create_mode) {

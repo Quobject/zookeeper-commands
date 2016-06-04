@@ -1,6 +1,6 @@
 {
   "name": "zookeeper-commands",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A node.js client to run ZooKeeper Commands the four letter words.",
   "main": "dist/index.js",
   "typings": "dist/index",
@@ -30,7 +30,6 @@
   "homepage": "https://github.com/Quobject/zookeeper-commands",
   "devDependencies": {
     "blue-tape": "^0.2.0",
-    "bluebird": "^3.4.0",
     "rimraf": "^2.5.2",
     "tap-diff": "^0.1.1",
     "ts-node": "^0.7.3",
@@ -38,9 +37,10 @@
     "typescript": "^1.8.10"
   },
   "dependencies": {
-    "bluebird": "^3.4.0",
     "lodash": "^4.13.1",
     "node-netcat": "^1.4.8",
-    "node-zookeeper-client": "^0.2.2"
+    "node-zookeeper-client": "^0.2.2",
+    "core-js": "^2.4.0",
+    "nodeify-ts": "^1.0.1"
   }
 }
