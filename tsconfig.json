@@ -14,8 +14,7 @@
     "src/client.ts",
     "src/qsutil.ts",
     "src/stat.ts",
-    "src/index.spec.ts",
-    "typings/index.d.ts"
+    "src/index.spec.ts"
   ],
   "compileOnSave": false
 }

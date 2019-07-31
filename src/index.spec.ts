@@ -38,7 +38,7 @@ test('zookeeper-commands', t => {
   const options = new Options(
      /* host */ HOST,
      /* port */ PORT,
-     /* timeout_ms */ TIMEOUT_MS
+     /* timeout_ms */ TIMEOUT_MS,
   );
 
   const zookeeper = new Zookeeper(options);

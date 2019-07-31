@@ -4,7 +4,7 @@ import * as qsutil from './qsutil';
 import nodeify from 'nodeify-ts';
 const Netcat = require('node-netcat');
 
-export * from './client'
+export * from './client';
 
 const extractResult = function (result) {
 
@@ -170,7 +170,7 @@ export class Zookeeper {
     const promise = Promise.resolve().then(function () {
       //console.log('command = ', command);
       if (!command || command.length !== 4) {
-        throw new Error(`Each command must be 
+        throw new Error(`Each command must be
           composed of four letters https://zookeeper.apache.org/doc/r3.4.6/zookeeperAdmin.html#sc_zkCommands`);
       }
 

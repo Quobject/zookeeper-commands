@@ -25,7 +25,7 @@ export function create (zookeeper_connect_string, zk_node_path, zk_node_data, cr
     });
     client.connect();
   });
-};
+}
 
 export function mkdirp (zookeeper_connect_string: string, zk_node_path: string, zk_node_data?: string, create_mode?: number ) {
   //console.log('mkdirp started');
@@ -56,7 +56,7 @@ export function mkdirp (zookeeper_connect_string: string, zk_node_path: string, 
     });
     client.connect();
   });
-};
+}
 
 
 
@@ -86,7 +86,7 @@ export function exists (zookeeper_connect_string, zk_node_path) {
     });
     client.connect();
   });
-};
+}
 
 export function getData (zookeeper_connect_string, zk_node_path) {
 
@@ -112,10 +112,10 @@ export function getData (zookeeper_connect_string, zk_node_path) {
     });
     client.connect();
   });
-};
+}
 
 
-export function setData (zookeeper_connect_string, zk_node_path, zk_node_data) {
+export function setData (zookeeper_connect_string: string, zk_node_path: string, zk_node_data: string) {
 
   const data = zk_node_data ? new Buffer(zk_node_data) : null;
 
@@ -139,7 +139,7 @@ export function setData (zookeeper_connect_string, zk_node_path, zk_node_data) {
     });
     client.connect();
   });
-};
+}
 
 
 export function remove (zookeeper_connect_string, zk_node_path) {
@@ -163,4 +163,4 @@ export function remove (zookeeper_connect_string, zk_node_path) {
     });
     client.connect();
   });
-};
+}

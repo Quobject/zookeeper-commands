@@ -15,7 +15,7 @@ export function array2json(lines, object) {
     }
     return result;
   }, object);
-};
+}
 
 export function array2json2(lines, object) {
   console.log('lines', lines);
@@ -36,7 +36,7 @@ export function array2json2(lines, object) {
     }
     return result;
   }, object);
-};
+}
 
 export function array2json3(lines, object) {
   console.log('lines', lines);
@@ -57,4 +57,4 @@ export function array2json3(lines, object) {
     }
     return result;
   }, object);
-};
+}
